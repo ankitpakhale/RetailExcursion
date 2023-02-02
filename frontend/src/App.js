@@ -3,19 +3,21 @@ import Header from "./components/Header";
 import { Container } from "react-bootstrap";
 import HomeScreen from "./screens/HomeScreen";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <Router>
       <Header />
       <main className="py-3">
         <Container>
-          <HomeScreen />
+          <Routes>
+            <Route path="/" exact element={<HomeScreen />} />
+          </Routes>
         </Container>
       </main>
       <Footer />
-    </div>
+    </Router>
   );
 }
 
