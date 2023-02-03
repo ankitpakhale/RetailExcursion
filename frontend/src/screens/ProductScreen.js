@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -11,11 +12,22 @@ import {
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Rating from "../components/Rating";
-import products from "../products";
+// import products from "../products";
 
 const ProductScreen = ({ match }) => {
   const paramId = useParams().id;
-  const product = products.find((item) => item._id == paramId);
+  // const product = products.find((item) => item._id == paramId);
+
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const GetIndividualProduct = async () => {
+      const { data } = await axios.get(`/api/product/${paramId}`);
+      setProduct(data);
+    };
+    GetIndividualProduct();
+  }, [paramId]);
+
   return (
     <div>
       <Link to={"/"} className="btn btn-light my-3">
