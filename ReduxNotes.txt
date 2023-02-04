@@ -1,0 +1,5 @@
+1.	productConstants.js --> creating constants
+2.	productReducers.js --> creating reducer
+3.	store.js --> to register the reducer (that we created in productReducers.js)
+4.	productActions.js --> to make the API call
+5.	ProductScreen.js --> to call the productActions API data
