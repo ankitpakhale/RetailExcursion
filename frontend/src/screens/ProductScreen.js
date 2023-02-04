@@ -12,11 +12,9 @@ import {
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Rating from "../components/Rating";
-// import products from "../products";
 
 const ProductScreen = ({ match }) => {
   const paramId = useParams().id;
-  // const product = products.find((item) => item._id == paramId);
 
   const [product, setProduct] = useState({});
 
