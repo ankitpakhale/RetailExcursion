@@ -21,9 +21,10 @@ const ProductScreen = () => {
 
   const dispatch = useDispatch();
 
-  // productDetails Calling from store
+  // 1. to pass the data in html page, getting data from redux store
+  // 2. productDetails Calling from store
+  // BELOW 2 LINES ONLY
   const productDetails = useSelector((state) => state.productDetails);
-  console.info(productDetails);
   const { loading, error, product } = productDetails;
 
   useEffect(() => {
