@@ -4,11 +4,11 @@ from .models import *
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display=['name', 'brand', 'category', 'description', 'rating', 'numReviews', 'price', 'countInStock', 'createdAt']
+    list_display=['name', 'brand', 'category', 'rating', 'numReviews', 'price', 'countInStock', 'createdAt']
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display=['name', 'rating', 'comment']
+    list_display=['name', 'rating']
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
