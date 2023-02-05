@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'base.apps.BaseConfig',
+    'import_export',
+    
 ]
 
 MIDDLEWARE = [
@@ -138,3 +140,7 @@ MEDIA_ROOT = 'static/images'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# Import export
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+
