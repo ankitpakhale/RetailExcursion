@@ -5,7 +5,7 @@ import {
   Col,
   Image,
   ListGroup,
-  ListGroupItem,
+  Form,
   Row,
 } from "react-bootstrap";
 import { useParams } from "react-router-dom";
@@ -17,10 +17,13 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 const ProductScreen = () => {
-  const paramId = useParams().id;
+  const paramId = useParams().id; // getting ID from url using useParams hook
+
+  // Quantity work start
+  const [qty, setQty] = useState(1);
+  // Quantity work end
 
   const dispatch = useDispatch();
-
   // 1. to pass the data in html page, getting data from redux store
   // 2. productDetails Calling from store
   // BELOW 2 LINES ONLY
@@ -87,14 +90,37 @@ const ProductScreen = () => {
                   </Row>
                 </ListGroup.Item>
 
+                {product.countInStock > 0 && (
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Qty:</Col>
+                      <Col xs={"auto"} className="my-1">
+                        <Form.Control
+                          as={"select"}
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {/* created an array based on count of the stock (i.e 10) & mapped it in option tag to show quantity */}
+                          {/*  [...Array(product.countInStock).keys()] === [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] */}
+                          {[...Array(product.countInStock).keys()].map((qt) => (
+                            <option key={qt + 1}>{qt + 1}</option>
+                          ))}
+                        </Form.Control>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                )}
+
                 <ListGroup.Item>
-                  <Button
-                    disabled={product.countInStock == 0}
-                    className="btn-block"
-                    type="button"
-                  >
-                    Add to Cart
-                  </Button>
+                  <Link to={`/cart/${paramId}?qty=${qty}`}>
+                    <Button
+                      disabled={product.countInStock == 0}
+                      className="btn-block"
+                      type="button"
+                    >
+                      Add to Cart
+                    </Button>
+                  </Link>
                 </ListGroup.Item>
               </ListGroup>
             </Card>
