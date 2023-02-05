@@ -1,5 +1,20 @@
+// for product
 1.	productConstants.js --> creating constants
 2.	productReducers.js --> creating reducer
-3.	store.js --> to register the reducer (that we created in productReducers.js)
+3.	store.js --> to register the reducer (that we created in productReducers.js) with store
 4.	productActions.js --> to make the API call
 5.	ProductScreen.js --> to call the productActions API data
+
+
+// for cart
+1.	cartConstants.js 
+2.	cartReducers.js
+	a.	import constants
+	b.	export constants as arrow function, passing state (for state we are passing an array of objects) and action
+	c. 	inside export --> passing action.type inside switch, adding cases that we created inside cartConstants.js
+3.	store.js --> to register cartReducer our store
+	a.	adding cartReducer inside combineReducers
+4.	cartActions.js
+	a.	fetching data using axios
+	b.	export addToCart function. Make addToCart function async type(passing dispatch, getState inside async) and pass id and qty as parameter of the function
+5.	CartScreen.js
