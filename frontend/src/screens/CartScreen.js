@@ -19,7 +19,6 @@ const CartScreen = () => {
   const qty = location.search ? Number(location.search.split("=")[1]) : 1; // spliting url data to get qty
 
   const dispatch = useDispatch();
-  // const [isDeleted, setIsDeleted] = useState(false);
 
   // to pull the data we use useSelector
   const cart = useSelector((state) => state.cart);
@@ -34,7 +33,7 @@ const CartScreen = () => {
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
-    // setIsDeleted(true);
+    alert("Product item deleted successfully");
   };
 
   return (
