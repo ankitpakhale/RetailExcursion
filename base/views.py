@@ -18,6 +18,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
     def validate(self, attrs):
         custom_data = super().validate(attrs)
+        
         # getting data from serializer itself
         serializer = UserSerializerWithToken(self.user).data
         for k, v in serializer.items():
