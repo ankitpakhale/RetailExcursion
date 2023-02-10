@@ -7,8 +7,25 @@ from .products import products
 from .models import Product
 from .serializers import ProductSerializer
 
+# Customizing JWT token
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 # Create your views here.
 
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+
+    def validate(self, attrs):
+        custom_data = super().validate(attrs)
+        custom_data['username'] = self.user.username
+        custom_data['email'] = self.user.email
+        return custom_data
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+    
+    
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
