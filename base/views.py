@@ -65,7 +65,7 @@ def registerUser(request):
         # It will automatically check duplication, it duplicate data found then it will throw error
         user = User.objects.create(
             first_name = data['name'],
-            username = data['username'],
+            username = data['email'],
             email = data['email'],
             password = make_password(data['password'])
         )
