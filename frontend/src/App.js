@@ -15,7 +15,7 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" exact element={<HomeScreen />} />
-            <Route path="/product/:id" exact element={<ProductScreen />} />
+            <Route path="/products/:id" exact element={<ProductScreen />} />
             <Route path="/cart/:id?" exact element={<CartScreen />} />
             {/* ? after id means id is optional. id is not mandatory */}
           </Routes>

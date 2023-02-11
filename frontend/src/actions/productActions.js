@@ -35,7 +35,7 @@ export const listProductDetails = (id) => async (dispatch) => {
     // dispatch usually takes 2 arguments type and payload
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`/api/product/${id}`);
+    const { data } = await axios.get(`/api/products/${id}`);
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data,
