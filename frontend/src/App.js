@@ -6,6 +6,7 @@ import HomeScreen from "./screens/HomeScreen";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
+import LoginScreen from "./screens/LoginScreen";
 
 function App() {
   return (
@@ -16,8 +17,11 @@ function App() {
           <Routes>
             <Route path="/" exact element={<HomeScreen />} />
             <Route path="/products/:id" exact element={<ProductScreen />} />
+
             <Route path="/cart/:id?" exact element={<CartScreen />} />
             {/* ? after id means id is optional. id is not mandatory */}
+
+            <Route path="/login" exact element={<LoginScreen />} />
           </Routes>
         </Container>
       </main>
