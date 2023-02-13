@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             {/* ? after id means id is optional. id is not mandatory */}
 
             <Route path="/login" exact element={<LoginScreen />} />
+            <Route path="/register" exact element={<RegisterScreen />} />
           </Routes>
         </Container>
       </main>
