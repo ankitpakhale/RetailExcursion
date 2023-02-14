@@ -4,7 +4,8 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDetails } from "../actions/userActions";
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
+import { USER_UPDATE_PROFILE_RESET } from "../constants/userContants";
 
 const ProfileScreen = () => {
   const [name, setName] = useState("");
@@ -15,17 +16,6 @@ const ProfileScreen = () => {
 
   const dispatch = useDispatch();
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    console.info("submitHandler clicked register user");
-    if (password === confirmPassword) {
-      //   dispatch(register(name, email, password));
-      console.info("updating...");
-    } else {
-      setMessage("Password is not matching");
-    }
-  };
-
   //   const location = useLocation(); // to get url data
   //   const redirect = location.search ? location.search.split("=")[1] : "/"; // spliting url data to get qty
 
@@ -35,13 +25,35 @@ const ProfileScreen = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.info("submitHandler clicked register user");
+    if (password === confirmPassword) {
+      dispatch(
+        updateUserProfile({
+          id: user._id,
+          name: name,
+          email: email,
+          password: password,
+        })
+      );
+      alert(`Profile of ${name} has been updated`);
+    } else {
+      setMessage("Password is not matching");
+    }
+  };
+
   const navigate = useNavigate(); // instead of history (react-router-dom v4) we use navigate in (react-router-dom v6)
 
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     } else {
-      if (!user || !user.name) {
+      if (!user || !user.name || success) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile"));
       } else {
         setName(user.name);
