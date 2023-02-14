@@ -40,6 +40,7 @@ const ProfileScreen = () => {
           password: password,
         })
       );
+      setMessage("");
       alert(`Profile of ${name} has been updated`);
     } else {
       setMessage("Password is not matching");

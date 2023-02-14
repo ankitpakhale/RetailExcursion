@@ -15,6 +15,7 @@ import {
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
   USER_UPDATE_PROFILE_RESET,
+  USER_DETAILS_RESET,
 } from "../constants/userContants";
 
 export const login = (email, password) => async (dispatch) => {
@@ -55,7 +56,7 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   // removing userInfo from localstorage
   localStorage.removeItem("userInfo");
-
+  dispatch({ type: USER_DETAILS_RESET });
   dispatch({
     type: USER_LOGOUT,
   });
@@ -171,7 +172,6 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     });
 
     localStorage.setItem("userInfo", JSON.stringify(data));
-  
   } catch (error) {
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,
