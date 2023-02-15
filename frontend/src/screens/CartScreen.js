@@ -36,6 +36,18 @@ const CartScreen = () => {
     alert("Product item deleted successfully");
   };
 
+  // Checking login status of user
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const getUserDetails = () => {
+    const loginStatus = localStorage.getItem("userInfo");
+    if (loginStatus) {
+      setIsUserLoggedIn(!isUserLoggedIn);
+    }
+  };
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
   return (
     <Row>
       <Col md={8}>
@@ -107,7 +119,9 @@ const CartScreen = () => {
           </ListGroup>
 
           <ListGroup.Item>
-            <Link to={"/login?redirect=shipping"}>
+            <Link
+              to={isUserLoggedIn ? "/shipping" : "/login?redirect=shipping"}
+            >
               <Button
                 type="button"
                 className="btn-block m-2"
