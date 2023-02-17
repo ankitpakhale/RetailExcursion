@@ -18,3 +18,6 @@
 	a.	fetching data using axios
 	b.	export addToCart function. Make addToCart function async type(passing dispatch, getState inside async) and pass id and qty as parameter of the function
 5.	CartScreen.js
+
+
+
