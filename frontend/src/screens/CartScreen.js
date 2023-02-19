@@ -23,7 +23,6 @@ const CartScreen = () => {
   // to pull the data we use useSelector
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  console.info("cartItems: ", cartItems);
 
   useEffect(() => {
     if (productId) {

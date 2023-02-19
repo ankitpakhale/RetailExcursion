@@ -62,7 +62,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    orders = serializers.SerializerMethodField(read_only=True)
+    orderItems = serializers.SerializerMethodField(read_only=True)
     shippingAddress = serializers.SerializerMethodField(read_only=True)
     user = serializers.SerializerMethodField(read_only=True)
 
@@ -72,7 +72,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     # function name should always start with get_ and end with with field name
     # field name is created just below the class started
-    def get_orders(self, obj):
+    def get_orderItems(self, obj):
         items = obj.orderitem_set.all()
         serializer = OrderItemSerializer(items, many=True)
         return serializer.data
