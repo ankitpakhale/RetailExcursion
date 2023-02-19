@@ -36,9 +36,11 @@ const PlaceOrderScreen = () => {
     Number(cart.taxPrice)
   ).toFixed(2);
 
-  if (!cart.paymentMethod) {
-    navigate("/payment");
-  }
+  useEffect(() => {
+    if (!cart.paymentMethod) {
+      navigate("/payment");
+    }
+  }, []);
 
   console.info(error, success);
   useEffect(() => {
