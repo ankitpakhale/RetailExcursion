@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { createOrder } from "../actions/orderActions";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
 const PlaceOrderScreen = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const PlaceOrderScreen = () => {
   ).toFixed(2);
 
   useEffect(() => {
+    // if paymentMethod is not there it will automatically redirect to payment page
     if (!cart.paymentMethod) {
       navigate("/payment");
     }
@@ -44,9 +46,9 @@ const PlaceOrderScreen = () => {
 
   console.info(error, success);
   useEffect(() => {
-    console.info(order, "order");
     if (success) {
       navigate(`/order/${order._id}`);
+      dispatch({ type: ORDER_CREATE_RESET });
     }
   }, [success, navigate]);
 
