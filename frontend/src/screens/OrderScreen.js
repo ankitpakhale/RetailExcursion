@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Col, ListGroup, Image, Card } from "react-bootstrap";
+import { Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -28,8 +28,13 @@ const OrderScreen = () => {
     }
   }, [order, orderId]);
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : error ? (
+    <Message variant={"danger"}>{error}</Message>
+  ) : (
     <div>
+      <h1>Order: {order._id}</h1>
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
