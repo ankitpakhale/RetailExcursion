@@ -24,7 +24,6 @@ const OrderScreen = () => {
   const dispatch = useDispatch();
 
   const orderId = params.id;
-  console.info(orderId, "_ref3");
   const [sdkReady, setSdkReady] = useState(false);
 
   const orderDetails = useSelector((state) => state.orderDetails);
@@ -70,6 +69,8 @@ const OrderScreen = () => {
       successDeliver
     ) {
       dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
+
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if (!window.paypal) {
@@ -94,7 +95,7 @@ const OrderScreen = () => {
     <Message variant={"danger"}>{error}</Message>
   ) : (
     <div>
-      <h1>Order: {order._id}</h1>
+      <h1>Order: {order.Id}</h1>
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
