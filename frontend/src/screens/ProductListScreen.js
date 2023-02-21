@@ -11,7 +11,7 @@ import {
   createProduct,
 } from "../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
-import { Navigate } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 
 function ProductListScreen() {
   const dispatch = useDispatch();
@@ -38,7 +38,10 @@ function ProductListScreen() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  let keyword = history.location.search;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const keyword = searchParams.get(); // 123
+
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
 
@@ -53,7 +56,7 @@ function ProductListScreen() {
     }
   }, [
     dispatch,
-    history,
+    navigate,
     userInfo,
     successDelete,
     successCreate,

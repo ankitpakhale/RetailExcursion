@@ -54,7 +54,7 @@ function ProductEditScreen() {
         setDescription(product.description);
       }
     }
-  }, [dispatch, product, productId, history, successUpdate]);
+  }, [dispatch, product, productId, navigate, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
