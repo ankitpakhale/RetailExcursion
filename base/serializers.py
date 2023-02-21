@@ -1,8 +1,7 @@
-from ctypes import addressof
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import Product, Order, OrderItem, ShippingAddress
+from .models import Product, Order, OrderItem, ShippingAddress, Review
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -12,21 +11,19 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['_id', 'username', 'email', 'name', 'isAdmin']
-        # fields = '__all__'
-
-    # function name should always start with get_ and end with with field name
-    # field name is created just below the class started
-    def get_isAdmin(self, obj):
-        return obj.is_staff
+        fields = ['id', '_id', 'username', 'email', 'name', 'isAdmin']
 
     def get__id(self, obj):
         return obj.id
 
+    def get_isAdmin(self, obj):
+        return obj.is_staff
+
     def get_name(self, obj):
         name = obj.first_name
-        if name == "":
+        if name == '':
             name = obj.email
+
         return name
 
 
@@ -35,18 +32,30 @@ class UserSerializerWithToken(UserSerializer):
 
     class Meta:
         model = User
-        fields = ['_id', 'username', 'email', 'name', 'isAdmin', 'token']
+        fields = ['id', '_id', 'username', 'email', 'name', 'isAdmin', 'token']
 
     def get_token(self, obj):
         token = RefreshToken.for_user(obj)
         return str(token.access_token)
 
 
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = '__all__'
+
+
 class ProductSerializer(serializers.ModelSerializer):
+    reviews = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Product
-        # fields = ['name', 'image', 'brand', 'category', 'description', 'rating', 'numReviews', 'price', 'countInStock', 'createdAt', '_id']
         fields = '__all__'
+
+    def get_reviews(self, obj):
+        reviews = obj.review_set.all()
+        serializer = ReviewSerializer(reviews, many=True)
+        return serializer.data
 
 
 class ShippingAddressSerializer(serializers.ModelSerializer):
@@ -70,8 +79,6 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = '__all__'
 
-    # function name should always start with get_ and end with with field name
-    # field name is created just below the class started
     def get_orderItems(self, obj):
         items = obj.orderitem_set.all()
         serializer = OrderItemSerializer(items, many=True)
@@ -81,7 +88,7 @@ class OrderSerializer(serializers.ModelSerializer):
         try:
             address = ShippingAddressSerializer(
                 obj.shippingaddress, many=False).data
-        except Exception:
+        except:
             address = False
         return address
 
