@@ -15,6 +15,7 @@ function SearchBox() {
       navigate(history.location.pathname);
     }
   };
+
   return (
     <Form onSubmit={submitHandler} inline>
       <Form.Control
