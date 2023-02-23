@@ -5,6 +5,7 @@
 4.	productActions.js --> to make the API call
 5.	ProductScreen.js --> to call the productActions API data
 
+
 // for cart
 1.	cartConstants.js 
 2.	cartReducers.js
