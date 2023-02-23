@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 
+
 function SearchBox() {
   const [keyword, setKeyword] = useState("");
 
@@ -31,5 +32,6 @@ function SearchBox() {
     </Form>
   );
 }
+
 
 export default SearchBox;
