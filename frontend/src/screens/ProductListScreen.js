@@ -38,10 +38,8 @@ function ProductListScreen() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-
   const [searchParams, setSearchParams] = useSearchParams();
 
-  
   const keyword = searchParams.get(); // 123
 
   useEffect(() => {
