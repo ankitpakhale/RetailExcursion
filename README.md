@@ -18,7 +18,6 @@ Retail Excursion is a full-stack e-commerce project developed using Django and R
 - Redux: A predictable state container for JavaScript apps, used for managing the application state and handling API calls.
 - JWT: JSON Web Tokens for user authentication.
 - Local Storage: To manage the shopping cart on the frontend.
-- Real-time API: To receive product availability updates in real-time.
 - PayPal: A widely used and highly secure payment gateway.
 
 
