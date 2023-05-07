@@ -124,7 +124,7 @@ cd retail-excursion
 
 ## Contributors
 
-- [Ankit Pakhale](mailto:akp3067@gmail.com).
+- [Ankit Pakhale](mailto:akp3067@gmail.com)
 
 ## Acknowledgements
 
